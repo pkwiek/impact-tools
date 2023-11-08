@@ -1,6 +1,6 @@
 import { computeCameraPosition } from "./util.js";
 
-const animatePath = async ({
+const drawPath = async ({
   map,
   duration,
   path,
@@ -47,31 +47,6 @@ const animatePath = async ({
        ]
       );
 
-      // slowly rotate the map at a constant rate
-      const bearing = 0.0//startBearing - animationPhase * 200.0;
-
-      // compute corrected camera ground position, so that he leading edge of the path is in view
-      var correctedPosition = computeCameraPosition(
-        pitch,
-        bearing,
-        lngLat,
-        startAltitude,
-        true // smooth
-      );
-
-      // set the pitch and bearing of the camera
-      const camera = map.getFreeCameraOptions();
-      camera.setPitchBearing(pitch, bearing);
-
-      // set the position and altitude of the camera
-      camera.position = mapboxgl.MercatorCoordinate.fromLngLat(
-        correctedPosition,
-        startAltitude
-      );
-
-      // apply the new camera options
-      map.setFreeCameraOptions(camera);
-
       // repeat!
       await window.requestAnimationFrame(frame);
     };
@@ -80,4 +55,4 @@ const animatePath = async ({
   });
 };
 
-export default animatePath;
+export default drawPath;

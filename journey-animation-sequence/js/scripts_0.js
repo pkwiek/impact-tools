@@ -90,11 +90,11 @@ map.on("load", async () => {
 
   if (prod) {
     // download the encoded video file
-    //const mp4 = encoder.end();
-    //const anchor = document.createElement("a");
-    //anchor.href = URL.createObjectURL(new Blob([mp4], { type: "video/mp4" }));
-    //anchor.download = `stage_${stage}_${gender}${square ? '_square' : ''}`;
-    //anchor.click();
+    const mp4 = encoder.end();
+    const anchor = document.createElement("a");
+    anchor.href = URL.createObjectURL(new Blob([mp4], { type: "video/mp4" }));
+    anchor.download = `stage_${stage}_${gender}${square ? '_square' : ''}`;
+    anchor.click();
   }
 
 });
